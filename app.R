@@ -40,6 +40,9 @@ tryCatch({
   
   # Import Python modules
   sc <- reticulate::import("scanpy")
+  # Configure scanpy figures for high resolution export (600 DPI)
+  # This significantly improves the quality of images shown in the app and saved by users
+  sc$set_figure_params(dpi = 100, dpi_save = 600, format = 'png')
   dc <- reticulate::import("decoupler")
   pydeseq2_dds <- reticulate::import("pydeseq2.dds")
   pydeseq2_ds <- reticulate::import("pydeseq2.ds")
@@ -3892,3 +3895,4 @@ server <- function(input, output,session) {
 options(shiny.sanitize.errors = TRUE)
 
 shinyApp(ui = ui, server = server)
+
